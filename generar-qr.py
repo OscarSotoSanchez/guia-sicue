@@ -15,8 +15,8 @@ QR = {
     "plazos": "https://www.urjc.es/images/Intranet/sicue/2026_2027/Plazos%20SICUE%20SALIENTES%20%202026-27.pdf",
     "sede": "https://sede.urjc.es",
     "guias": "https://gestion3.urjc.es/guiasdocentes/",
-    "plantilla": "https://oscarsotosanchez.github.io/guia-sicue/propuesta-acuerdo-academico-SICUE.xlsx",
-    "guia": "https://oscarsotosanchez.github.io/guia-sicue/",
+    "plantilla": "https://sicue-etsii.sotos.dev/propuesta-acuerdo-academico-SICUE.xlsx",
+    "guia": "https://sicue-etsii.sotos.dev/",
 }
 
 out = pathlib.Path(__file__).resolve().parent / "qr"

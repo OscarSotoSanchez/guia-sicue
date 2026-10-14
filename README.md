@@ -2,9 +2,9 @@
 
 Guía rápida del programa de movilidad nacional **SICUE** para estudiantes de los grados de la ETSII (URJC) coordinados por Óscar Soto Sánchez: Diseño y Desarrollo de Videojuegos, Ingeniería de Computadores, Ingeniería del Software, Ingeniería Informática, Inteligencia Artificial y Matemáticas.
 
-🌐 **Web:** <https://oscarsotosanchez.github.io/guia-sicue/>
-📄 **PDF:** <https://oscarsotosanchez.github.io/guia-sicue/guia-sicue-alumno.pdf>
-📊 **Plantilla Excel de propuesta de acuerdo académico:** <https://oscarsotosanchez.github.io/guia-sicue/propuesta-acuerdo-academico-SICUE.xlsx>
+🌐 **Web:** <https://sicue-etsii.sotos.dev/>
+📄 **PDF:** <https://sicue-etsii.sotos.dev/guia-sicue-alumno.pdf>
+📊 **Plantilla Excel de propuesta de acuerdo académico:** <https://sicue-etsii.sotos.dev/propuesta-acuerdo-academico-SICUE.xlsx>
 
 > Documento orientativo. La información oficial y vinculante es la publicada en <https://www.urjc.es/programa-de-movilidad-de-estudiantes-sicue>.
 
