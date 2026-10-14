@@ -52,6 +52,9 @@
   .chip { border: 1px solid #C9D8E8; background: var(--celeste); border-radius: 10mm; padding: 0.6mm 2.4mm; font-size: 8.8pt; white-space: nowrap; }
   .chip b { color: var(--azul); }
   .chip.tfg { background: var(--verdeclaro); border-color: #9FD3B4; }
+  a.chip { color: inherit; border: 1px solid #C9D8E8; }
+  a.chip.tfg { border-color: #9FD3B4; }
+  @media screen { a.chip:hover { border-color: var(--azul2); background: #fff; } }
   .degree { margin-bottom: 3.2mm; break-inside: avoid; }
   .degree h3 { margin: 0 0 1.4mm; font-size: 10.5pt; }
   .cover-band { background: var(--azul); color: #fff; border-radius: 4mm; padding: 9mm 9mm 8mm; margin-bottom: 6mm; position: relative; overflow: hidden; }
@@ -331,57 +334,57 @@
 <section class="page">
   <h2><span class="num">3</span>¿A dónde me puedo ir?</h2>
   <p class="lead">Destinos con convenio para nuestros grados en la oferta 2026/27 (<b>plazas · meses</b>). La oferta cambia cada año: consulta siempre el listado oficial de convenios (QR en la apartado 7).</p>
-  <p class="small"><span class="chip tfg">verde</span> permite incluir el TFG</p>
+  <p class="small">Pulsa cada destino para ver la página del grado. &nbsp; <span class="chip tfg">verde</span> permite incluir el TFG</p>
 
   <!-- CONVENIOS: copiar de 04-convenios-etsii.md cada curso -->
   <div class="degree">
     <h3>Ingeniería Informática</h3>
     <div class="chips">
-      <span class="chip"><b>Almería</b> 3·9m</span><span class="chip"><b>Burgos</b> 2·9m</span>
-      <span class="chip"><b>Castilla-La Mancha</b> Albacete 1·9m</span><span class="chip"><b>Castilla-La Mancha</b> Talavera 2·9m</span><span class="chip"><b>Castilla-La Mancha</b> Ciudad Real 2·9m</span>
-      <span class="chip"><b>Córdoba</b> 2·9m</span><span class="chip"><b>Granada</b> Ceuta 2·9m</span><span class="chip"><b>Huelva</b> 3·9m</span>
-      <span class="chip"><b>Las Palmas G.C.</b> 2·9m</span><span class="chip"><b>León</b> 3·9m</span><span class="chip"><b>Málaga</b> 1·9m</span>
-      <span class="chip"><b>Murcia</b> 6·9m</span><span class="chip"><b>Oviedo</b> 1·9m</span><span class="chip"><b>Salamanca</b> 2·9m</span>
-      <span class="chip"><b>Sevilla</b> 1·9m</span><span class="chip tfg"><b>Zaragoza</b> Teruel 2·9m · TFG</span><span class="chip tfg"><b>Lleida</b> 2·9m · TFG</span>
-      <span class="chip"><b>Illes Balears</b> 1·9m</span><span class="chip"><b>València</b> 1·9m</span><span class="chip"><b>València</b> 1·5m</span>
-      <span class="chip"><b>Politècnica de València</b> 2·9m</span><span class="chip"><b>Rovira i Virgili</b> 1·9m</span>
-      <span class="chip"><b>Barcelona</b> 2·9m</span><span class="chip"><b>Jaume I</b> 3·9m</span>
+      <a class="chip" href="https://www.ual.es/estudios/grados/presentacion/4015"><b>Almería</b> 3·9m</a><a class="chip" href="https://www.ubu.es/grado-en-ingenieria-informatica"><b>Burgos</b> 2·9m</a>
+      <a class="chip" href="https://esiiab.uclm.es/datos-del-titulo/"><b>Castilla-La Mancha</b> Albacete 1·9m</a><a class="chip" href="https://www.uclm.es/toledo/fcsociales/grado-informatica"><b>Castilla-La Mancha</b> Talavera 2·9m</a><a class="chip" href="https://esi.uclm.es/index.php/grado-en-ingenieria-informatica/"><b>Castilla-La Mancha</b> Ciudad Real 2·9m</a>
+      <a class="chip" href="https://www.uco.es/eps/es/titulaciones/gr-ing-informatica"><b>Córdoba</b> 2·9m</a><a class="chip" href="https://grados.ugr.es/informatica-ceuta/informacion/presentacion"><b>Granada</b> Ceuta 2·9m</a><a class="chip" href="https://www.uhu.es/estudia-en-la-uhu/oferta-academica/grados/grado-en-ingenieria-informatica"><b>Huelva</b> 3·9m</a>
+      <a class="chip" href="https://www.eii.ulpgc.es/es/formacion/Grado-en-Ingenieria-Informatica"><b>Las Palmas G.C.</b> 2·9m</a><a class="chip" href="https://www.unileon.es/estudiantes/oferta-academica/grados/grado-en-ingenieria-informatica"><b>León</b> 3·9m</a><a class="chip" href="https://www.uma.es/grado-en-ingenieria-informatica"><b>Málaga</b> 1·9m</a>
+      <a class="chip" href="https://www.um.es/web/estudios/grados/informatica"><b>Murcia</b> 6·9m</a><a class="chip" href="https://ingenieriainformatica.uniovi.es/infoacademica/grado"><b>Oviedo</b> 1·9m</a><a class="chip" href="https://usal.es/grado-en-ingenieria-informatica"><b>Salamanca</b> 2·9m</a>
+      <a class="chip" href="https://www.us.es/estudiar/que-estudiar/oferta-de-grados/grado-en-ingenieria-informatica-tecnologias-informaticas"><b>Sevilla</b> 1·9m</a><a class="chip tfg" href="https://estudios.unizar.es/estudio/ver?id=148"><b>Zaragoza</b> Teruel 2·9m · TFG</a><a class="chip tfg" href="https://www.grauinformatica.udl.cat/ca/"><b>Lleida</b> 2·9m · TFG</a>
+      <a class="chip" href="https://estudis.uib.cat/estudis-de-grau/grau/informatica/GIN3-P/"><b>Illes Balears</b> 1·9m</a><a class="chip" href="https://www.uv.es/uvweb/grau-enginyeria-informatica/ca/grau-enginyeria-informatica-1285930650503.html"><b>València</b> 1·9m</a><a class="chip" href="https://www.uv.es/uvweb/grau-enginyeria-informatica/ca/grau-enginyeria-informatica-1285930650503.html"><b>València</b> 1·5m</a>
+      <a class="chip" href="https://www.upv.es/titulaciones/GII/indexc.html"><b>Politècnica de València</b> 2·9m</a><a class="chip" href="https://catalegestudis.urv.cat/grau/grau-denginyeria-informatica/"><b>Rovira i Virgili</b> 1·9m</a>
+      <a class="chip" href="https://web.ub.edu/ca/web/estudis/w/grau-g1148"><b>Barcelona</b> 2·9m</a><a class="chip" href="https://www.uji.es/estudis/base/2025/graus/informatica/"><b>Jaume I</b> 3·9m</a>
     </div>
   </div>
   <div class="degree">
     <h3>Ingeniería del Software</h3>
     <div class="chips">
-      <span class="chip"><b>Jaén</b> 1·9m</span><span class="chip"><b>Las Palmas G.C.</b> 1·9m</span><span class="chip"><b>Málaga</b> 1·9m</span>
-      <span class="chip"><b>Oviedo</b> 1·9m</span><span class="chip"><b>Sevilla</b> 1·9m</span><span class="chip"><b>Miguel Hernández</b> Elche 2·9m</span>
-      <span class="chip"><b>A Coruña</b> 1·9m</span><span class="chip"><b>Illes Balears</b> 1·9m</span>
-      <span class="chip"><b>Extremadura</b> 1·9m</span><span class="chip"><b>Barcelona</b> 2·9m</span>
+      <a class="chip" href="https://www.ujaen.es/estudios/oferta-academica/grados/grado-en-ingenieria-informatica-eps-jaen"><b>Jaén</b> 1·9m</a><a class="chip" href="https://www.eii.ulpgc.es/es/formacion/Grado-en-Ingenieria-Informatica"><b>Las Palmas G.C.</b> 1·9m</a><a class="chip" href="https://www.uma.es/grado-en-ingenieria-del-software/"><b>Málaga</b> 1·9m</a>
+      <a class="chip" href="https://ingenieriainformatica.uniovi.es/infoacademica/grado"><b>Oviedo</b> 1·9m</a><a class="chip" href="https://www.us.es/estudiar/que-estudiar/oferta-de-grados/grado-en-ingenieria-informatica-ingenieria-del-software"><b>Sevilla</b> 1·9m</a><a class="chip" href="https://informatica.umh.es/"><b>Miguel Hernández</b> Elche 2·9m</a>
+      <a class="chip" href="https://estudos.udc.es/es/study/detail/614g01v01"><b>A Coruña</b> 1·9m</a><a class="chip" href="https://estudis.uib.cat/estudis-de-grau/grau/informatica/GIN3-P/"><b>Illes Balears</b> 1·9m</a>
+      <a class="chip" href="https://epcc.unex.es/titulaciones/1632/"><b>Extremadura</b> 1·9m</a><a class="chip" href="https://web.ub.edu/ca/web/estudis/w/grau-g1148"><b>Barcelona</b> 2·9m</a>
     </div>
   </div>
   <div class="degree">
     <h3>Ingeniería de Computadores</h3>
     <div class="chips">
-      <span class="chip"><b>Las Palmas G.C.</b> 1·9m</span><span class="chip"><b>Málaga</b> 1·9m</span><span class="chip"><b>Oviedo</b> 1·9m</span>
-      <span class="chip"><b>Sevilla</b> 1·9m</span><span class="chip"><b>A Coruña</b> 1·9m</span><span class="chip"><b>Illes Balears</b> 1·9m</span>
-      <span class="chip"><b>Extremadura</b> 1·9m</span>
+      <a class="chip" href="https://www.eii.ulpgc.es/es/formacion/Grado-en-Ingenieria-Informatica"><b>Las Palmas G.C.</b> 1·9m</a><a class="chip" href="https://www.uma.es/grado-en-ingenieria-de-computadores/"><b>Málaga</b> 1·9m</a><a class="chip" href="https://ingenieriainformatica.uniovi.es/infoacademica/grado"><b>Oviedo</b> 1·9m</a>
+      <a class="chip" href="https://www.us.es/estudiar/que-estudiar/oferta-de-grados/grado-en-ingenieria-informatica-ingenieria-de-computadores"><b>Sevilla</b> 1·9m</a><a class="chip" href="https://estudos.udc.es/es/study/detail/614g01v01"><b>A Coruña</b> 1·9m</a><a class="chip" href="https://estudis.uib.cat/estudis-de-grau/grau/informatica/GIN3-P/"><b>Illes Balears</b> 1·9m</a>
+      <a class="chip" href="https://epcc.unex.es/titulaciones/1647/"><b>Extremadura</b> 1·9m</a>
     </div>
   </div>
   <div class="grid2">
     <div class="degree">
       <h3>Inteligencia Artificial</h3>
       <div class="chips">
-        <span class="chip"><b>León</b> 2·9m</span><span class="chip"><b>Miguel Hernández</b> Elche 2·9m</span>
-        <span class="chip"><b>A Coruña</b> 2·9m</span><span class="chip"><b>Vigo</b> Ourense 2·9m</span>
-        <span class="chip"><b>Politècnica de Catalunya</b> 2·9m</span>
+        <a class="chip" href="https://www.unileon.es/estudiantes/oferta-academica/grados/grado-en-ingenieria-de-datos-e-inteligencia-artificial"><b>León</b> 2·9m</a><a class="chip" href="https://cienciadatos.umh.es/"><b>Miguel Hernández</b> Elche 2·9m</a>
+        <a class="chip" href="https://estudos.udc.es/es/study/detail/614g03v01"><b>A Coruña</b> 2·9m</a><a class="chip" href="https://esei.uvigo.es/es/estudos/grao-en-intelixencia-artifical/"><b>Vigo</b> Ourense 2·9m</a>
+        <a class="chip" href="https://www.fib.upc.edu/es/grados/grado-en-inteligencia-artificial"><b>Politècnica de Catalunya</b> 2·9m</a>
       </div>
     </div>
     <div>
       <div class="degree">
         <h3>Diseño y Desarrollo de Videojuegos</h3>
-        <div class="chips"><span class="chip"><b>Jaume I</b> Castellón 2·9m</span></div>
+        <div class="chips"><a class="chip" href="https://www.uji.es/estudis/base/2025/graus/videojocs-p25/"><b>Jaume I</b> Castellón 2·9m</a></div>
       </div>
       <div class="degree">
         <h3>Matemáticas</h3>
-        <div class="chips"><span class="chip"><b>Politècnica de València</b> 2·9m</span></div>
+        <div class="chips"><a class="chip" href="https://doblegradomates.webs.upv.es/"><b>Politècnica de València</b> 2·9m</a></div>
       </div>
     </div>
   </div>
@@ -389,12 +392,12 @@
   <div class="degree">
     <h3>Dobles grados</h3>
     <div class="chips">
-      <span class="chip"><b>Granada</b> Ing. Informática + Matemáticas 2·9m</span>
-      <span class="chip"><b>Sevilla</b> Ing. Informática + Matemáticas 2·9m</span>
-      <span class="chip"><b>Sevilla</b> Ing. del Software + Matemáticas 2·9m</span>
-      <span class="chip"><b>Almería</b> Economía + Matemáticas 2·9m</span>
-      <span class="chip"><b>Alicante</b> ADE + Informática 1·9m</span>
-      <span class="chip"><b>Pontificia de Salamanca</b> Ing. Informática + ADE 2·9m</span>
+      <a class="chip" href="https://grados.ugr.es/informaticaymatematicas/informacion/presentacion"><b>Granada</b> Ing. Informática + Matemáticas 2·9m</a>
+      <a class="chip" href="https://www.us.es/estudiar/que-estudiar/oferta-de-grados/doble-grado-en-ingenieria-informatica-tecnologias"><b>Sevilla</b> Ing. Informática + Matemáticas 2·9m</a>
+      <a class="chip" href="https://www.us.es/estudiar/que-estudiar/oferta-de-grados/doble-grado-en-ingenieria-informatica-tecnologias"><b>Sevilla</b> Ing. del Software + Matemáticas 2·9m</a>
+      <a class="chip" href="https://www.ual.es/estudios/grados/presentacion/0463"><b>Almería</b> Economía + Matemáticas 2·9m</a>
+      <a class="chip" href="https://economicas.ua.es/es/estudios/i2ade/doble-grado-en-ingenieria-informatica-ade-i-ade.html"><b>Alicante</b> ADE + Informática 1·9m</a>
+      <a class="chip" href="https://www.upsa.es/oferta-academica/doble-grado-en-informatica-adet"><b>Pontificia de Salamanca</b> Ing. Informática + ADE 2·9m</a>
     </div>
   </div>
 
