@@ -73,13 +73,19 @@
     .webbar .title { font-weight: bold; margin-right: auto; }
     .webbar a { color: #fff; border: 1px solid rgba(255,255,255,.6); border-radius: 2mm; padding: 1.5mm 3.5mm; font-weight: bold; }
     .webbar a.main { background: var(--rojo); border-color: var(--rojo); }
+    .webbar .links { display: flex; flex-wrap: wrap; gap: 3mm; }
+    .menu-toggle, .menu-btn { display: none; }
     .page { background: #fff; width: 210mm; min-height: 297mm; margin: 0 auto 8mm; padding: 13mm 14mm 14mm; box-shadow: 0 2px 12px rgba(0,0,0,.12); }
   }
   @media screen and (max-width: 220mm) {
     .page { width: auto; min-height: 0; margin: 0 2mm 6mm; padding: 6mm 5mm; }
     .grid2, .grid3 { grid-template-columns: 1fr; }
     .qrgrid { grid-template-columns: 1fr 1fr; }
-    .webbar .title { width: 100%; text-align: center; margin: 0; }
+    .webbar { justify-content: space-between; }
+    .menu-btn { display: block; font-size: 22px; line-height: 1; cursor: pointer; padding: 1mm 2.5mm; border: 1px solid rgba(255,255,255,.6); border-radius: 2mm; user-select: none; }
+    .webbar .links { display: none; width: 100%; flex-direction: column; gap: 2mm; }
+    .webbar .links a { text-align: center; }
+    .menu-toggle:checked ~ .links { display: flex; }
     .cover-band svg { display: none; }
     .cover-band h1 { font-size: 26pt; }
   }
@@ -88,9 +94,13 @@
 <body>
 <nav class="webbar">
   <span class="title">Guía SICUE · ETSII · URJC</span>
-  <a class="main" href="guia-sicue-alumno.pdf" download>⬇ Descargar PDF</a>
-  <a href="propuesta-acuerdo-academico-SICUE.xlsx" download>⬇ Plantilla Excel del acuerdo</a>
-  <a href="https://www.urjc.es/programa-de-movilidad-de-estudiantes-sicue">Web oficial SICUE</a>
+  <input type="checkbox" id="menu-toggle" class="menu-toggle">
+  <label for="menu-toggle" class="menu-btn" aria-label="Abrir menú de descargas">☰</label>
+  <div class="links">
+    <a class="main" href="guia-sicue-alumno.pdf" download>⬇ Descargar PDF</a>
+    <a href="propuesta-acuerdo-academico-SICUE.xlsx" download>⬇ Plantilla Excel del acuerdo</a>
+    <a href="https://www.urjc.es/programa-de-movilidad-de-estudiantes-sicue">Web oficial SICUE</a>
+  </div>
 </nav>
 
 <!-- ===================================================== PÁGINA 1 · PORTADA ===================================================== -->
