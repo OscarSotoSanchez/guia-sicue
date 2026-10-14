@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<!--
+  Guía SICUE para alumnos de la ETSII (URJC).
+  Publicada en https://oscarsotosanchez.github.io/guia-sicue/ (GitHub Pages). Es también la fuente del PDF: ./generar-pdf.sh
+  ⚠️ ACTUALIZAR CADA CURSO: fechas (buscar "FECHAS"), convenios (buscar "CONVENIOS") y enlaces 2026_2027 (aquí y en generar-qr.py).
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Guía rápida del programa de movilidad nacional SICUE para estudiantes de la ETSII (URJC).">
+<title>SICUE · Guía para estudiantes de la ETSII</title>
+<style>
+  @page { size: A4; margin: 13mm 14mm 14mm 14mm; }
+  :root {
+    --azul: #1F3A5F; --azul2: #2E5C8A; --celeste: #E8F0F8; --rojo: #B5121B;
+    --verde: #2E7D4F; --verdeclaro: #E6F4EC; --ambar: #B7791F; --ambarclaro: #FDF3E1;
+    --gris: #5F6B76; --linea: #D5DCE3;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "Liberation Sans", Arial, Helvetica, sans-serif; color: #1d2733; font-size: 10.5pt; line-height: 1.42; margin: 0; }
+  a { color: var(--azul2); text-decoration: none; border-bottom: 1px dotted var(--azul2); }
+  h1 { font-size: 30pt; margin: 0; color: var(--azul); letter-spacing: -0.5px; }
+  h2 { font-size: 17pt; color: var(--azul); margin: 0 0 3mm; padding-bottom: 2mm; border-bottom: 3px solid var(--rojo); }
+  h3 { font-size: 11.5pt; color: var(--azul); margin: 4mm 0 1.5mm; }
+  p { margin: 0 0 2.5mm; }
+  ul { margin: 0 0 2.5mm; padding-left: 5mm; }
+  li { margin-bottom: 1mm; }
+  .page { page-break-after: always; break-after: page; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+  .num { display: inline-block; background: var(--rojo); color: #fff; border-radius: 50%; width: 7mm; height: 7mm; text-align: center; line-height: 7mm; font-size: 11pt; margin-right: 2mm; }
+  .lead { font-size: 11.5pt; color: var(--gris); }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3.5mm; }
+  .card { border: 1px solid var(--linea); border-radius: 3mm; padding: 3mm 3.5mm; background: #fff; break-inside: avoid; }
+  .card.azul { background: var(--celeste); border-color: #C9D8E8; }
+  .card.verde { background: var(--verdeclaro); border-color: #BFE3CD; }
+  .card.ambar { background: var(--ambarclaro); border-color: #F1D9A8; }
+  .card.rojo { background: #FBEAEA; border-color: #EDC2C4; }
+  .card h3 { margin-top: 0; }
+  .big { font-size: 20pt; font-weight: bold; color: var(--azul); line-height: 1.1; }
+  .small { font-size: 9pt; color: var(--gris); }
+  .tiny { font-size: 8pt; color: var(--gris); }
+  .check { list-style: none; padding-left: 0; }
+  .check li { padding-left: 6.5mm; position: relative; }
+  .check li::before { content: "✓"; position: absolute; left: 0.5mm; top: 0; color: var(--verde); font-weight: bold; }
+  .warn li::marker { color: var(--rojo); }
+  table { width: 100%; border-collapse: collapse; font-size: 9.5pt; }
+  th { background: var(--azul); color: #fff; text-align: left; padding: 1.6mm 2mm; font-weight: bold; }
+  td { padding: 1.5mm 2mm; border-bottom: 1px solid var(--linea); vertical-align: top; }
+  .chips { display: flex; flex-wrap: wrap; gap: 1.4mm; }
+  .chip { border: 1px solid #C9D8E8; background: var(--celeste); border-radius: 10mm; padding: 0.6mm 2.4mm; font-size: 8.8pt; white-space: nowrap; }
+  .chip b { color: var(--azul); }
+  .chip.tfg { background: var(--verdeclaro); border-color: #9FD3B4; }
+  .chip.conf { background: #F3F4F6; border-color: #D1D5DB; color: #6B7280; }
+  .degree { margin-bottom: 3.2mm; break-inside: avoid; }
+  .degree h3 { margin: 0 0 1.4mm; font-size: 10.5pt; }
+  .cover-band { background: var(--azul); color: #fff; border-radius: 4mm; padding: 9mm 9mm 8mm; margin-bottom: 6mm; position: relative; overflow: hidden; }
+  .cover-band h1 { color: #fff; font-size: 34pt; }
+  .cover-band .sub { font-size: 13pt; opacity: 0.92; margin-top: 2mm; }
+  .cover-band .tag { display: inline-block; background: var(--rojo); padding: 1mm 3mm; border-radius: 2mm; font-size: 9pt; letter-spacing: 1px; margin-bottom: 4mm; }
+  .qrgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; }
+  .qr { text-align: center; border: 1px solid var(--linea); border-radius: 3mm; padding: 3mm 2mm 2.5mm; break-inside: avoid; }
+  .qr img { width: 27mm; height: 27mm; }
+  .qr .t { font-weight: bold; color: var(--azul); font-size: 9.5pt; margin-top: 1mm; }
+  .footer { margin-top: 5mm; font-size: 8pt; color: var(--gris); border-top: 1px solid var(--linea); padding-top: 2mm; }
+  svg text { font-family: "Liberation Sans", Arial, Helvetica, sans-serif; }
+  .webbar { display: none; }
+  /* ---- Solo en pantalla (web): páginas como hojas y barra de descargas. No afecta al PDF. ---- */
+  @media screen {
+    body { background: #E9EDF2; padding: 0 0 12mm; }
+    .webbar { display: flex; flex-wrap: wrap; gap: 3mm; align-items: center; justify-content: center; position: sticky; top: 0; z-index: 10;
+              background: var(--azul); color: #fff; padding: 3mm 4mm; margin-bottom: 8mm; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
+    .webbar .title { font-weight: bold; margin-right: auto; }
+    .webbar a { color: #fff; border: 1px solid rgba(255,255,255,.6); border-radius: 2mm; padding: 1.5mm 3.5mm; font-weight: bold; }
+    .webbar a.main { background: var(--rojo); border-color: var(--rojo); }
+    .page { background: #fff; width: 210mm; min-height: 297mm; margin: 0 auto 8mm; padding: 13mm 14mm 14mm; box-shadow: 0 2px 12px rgba(0,0,0,.12); }
+  }
+  @media screen and (max-width: 220mm) {
+    .page { width: auto; min-height: 0; margin: 0 2mm 6mm; padding: 6mm 5mm; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .qrgrid { grid-template-columns: 1fr 1fr; }
+    .webbar .title { width: 100%; text-align: center; margin: 0; }
+    .cover-band svg { display: none; }
+    .cover-band h1 { font-size: 26pt; }
+  }
+</style>
+</head>
+<body>
+<nav class="webbar">
+  <span class="title">Guía SICUE · ETSII · URJC</span>
+  <a class="main" href="guia-sicue-alumno.pdf" download>⬇ Descargar PDF</a>
+  <a href="propuesta-acuerdo-academico-SICUE.xlsx" download>⬇ Plantilla Excel del acuerdo</a>
+  <a href="https://www.urjc.es/programa-de-movilidad-de-estudiantes-sicue">Web oficial SICUE</a>
+</nav>
+
+<!-- ===================================================== PÁGINA 1 · PORTADA ===================================================== -->
+<section class="page">
+  <div class="cover-band">
+    <div class="tag">MOVILIDAD NACIONAL · ETSII · URJC</div>
+    <h1>Programa SICUE</h1>
+    <div class="sub">Guía rápida para estudiantes que quieren estudiar un semestre o un curso en otra universidad española</div>
+    <svg viewBox="0 0 200 120" style="position:absolute; right:7mm; top:6mm; width:48mm; opacity:0.95">
+      <!-- dos universidades conectadas -->
+      <g fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round">
+        <path d="M18 70 L45 52 L72 70 Z"/><rect x="24" y="70" width="42" height="28"/>
+        <line x1="34" y1="74" x2="34" y2="94"/><line x1="45" y1="74" x2="45" y2="94"/><line x1="56" y1="74" x2="56" y2="94"/>
+        <path d="M128 40 L155 22 L182 40 Z"/><rect x="134" y="40" width="42" height="28"/>
+        <line x1="144" y1="44" x2="144" y2="64"/><line x1="155" y1="44" x2="155" y2="64"/><line x1="166" y1="44" x2="166" y2="64"/>
+        <path d="M74 64 C 95 30, 110 30, 126 44" stroke-dasharray="5 5"/>
+        <path d="M126 50 C 108 80, 92 84, 74 76" stroke-dasharray="5 5" opacity="0.6"/>
+      </g>
+      <path d="M120 38 L128 45 L118 47 Z" fill="#fff"/>
+      <text x="45" y="114" fill="#fff" font-size="11" text-anchor="middle">URJC</text>
+      <text x="155" y="84" fill="#fff" font-size="11" text-anchor="middle">Destino</text>
+    </svg>
+  </div>
+
+  <h2>SICUE en 30 segundos</h2>
+  <div class="grid3" style="margin-bottom:4mm">
+    <div class="card azul"><div class="big">5 o 9 meses</div><div class="small">Un semestre (mín. <b>24 ECTS</b>) o un curso completo (mín. <b>45 ECTS</b>) en otra universidad española.</div></div>
+    <div class="card azul"><div class="big">0 € extra</div><div class="small">Te matriculas y pagas <b>solo en la URJC</b>. En destino no pagas tasas.</div></div>
+    <div class="card azul"><div class="big">Reconocido</div><div class="small">Lo que apruebes allí se reconoce en tu expediente según tu <b>Acuerdo Académico</b>.</div></div>
+  </div>
+
+  <div class="grid2">
+    <div>
+      <h3>Lo que tienes que saber</h3>
+      <ul>
+        <li>Es un intercambio entre universidades <b>españolas</b> con convenio (no es Erasmus, pero es <b>compatible</b> si no coinciden en el tiempo).</li>
+        <li><b>No tiene beca propia.</b> Puedes mantener la beca del Ministerio (MEC), que se pide a la URJC.</li>
+        <li>Solo hay plazas en las universidades que tienen <b>convenio para tu grado</b> (página 4).</li>
+        <li>Se adjudica <b>por nota media</b> entre los alumnos de tu mismo grado.</li>
+        <li>Toda la comunicación llega a tu <b>correo @alumnos.urjc.es</b>.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Índice</h3>
+      <table>
+        <tr><td><span class="num">2</span>¿Puedo pedirlo? ¿Cuándo me iría?</td></tr>
+        <tr><td><span class="num">3</span>El año SICUE, mes a mes</td></tr>
+        <tr><td><span class="num">4</span>¿A dónde me puedo ir?</td></tr>
+        <tr><td><span class="num">5</span>El Acuerdo Académico</td></tr>
+        <tr><td><span class="num">6</span>Durante y después de la estancia</td></tr>
+        <tr><td><span class="num">7</span>Errores que salen caros</td></tr>
+        <tr><td><span class="num">8</span>Enlaces y contactos (QR)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card verde" style="margin-top:5mm; display:flex; gap:5mm; align-items:center">
+    <svg viewBox="0 0 48 48" style="width:14mm; flex:none"><circle cx="24" cy="17" r="9" fill="none" stroke="#2E7D4F" stroke-width="3"/><path d="M8 44 C 10 31, 38 31, 40 44" fill="none" stroke="#2E7D4F" stroke-width="3"/></svg>
+    <div>
+      <b>Tu coordinador SICUE en la ETSII:</b> Óscar Soto Sánchez · <a href="mailto:oscar.soto@urjc.es">oscar.soto@urjc.es</a><br>
+      <span class="small">Grados: Diseño y Desarrollo de Videojuegos · Ing. de Computadores · Ing. del Software · Ing. Informática · Inteligencia Artificial · Matemáticas.<br>
+      Te ayudo con la <b>parte académica</b> (qué asignaturas cursar y cómo se reconocen). Los trámites administrativos los lleva Relaciones Internacionales: <a href="mailto:internacional.sicuesalientes@urjc.es">internacional.sicuesalientes@urjc.es</a></span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================== PÁGINA 2 · ¿PUEDO PEDIRLO? ===================================================== -->
+<section class="page">
+  <h2><span class="num">2</span>¿Puedo pedirlo?</h2>
+  <p class="lead">Sigue el diagrama. Si llegas al final en verde, puedes presentarte a la próxima convocatoria.</p>
+
+  <svg viewBox="0 0 680 330" style="width:100%; margin:1mm 0 3mm">
+    <defs>
+      <marker id="ar" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" refX="10" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 Z" fill="#2E5C8A"/></marker>
+      <marker id="arr" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" refX="10" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 Z" fill="#B5121B"/></marker>
+    </defs>
+    <g font-size="12.5">
+      <!-- preguntas -->
+      <g>
+        <rect x="20" y="8" width="400" height="44" rx="8" fill="#E8F0F8" stroke="#2E5C8A"/>
+        <text x="220" y="27" text-anchor="middle" font-weight="bold" fill="#1F3A5F">¿Estudias un GRADO oficial en la URJC?</text>
+        <text x="220" y="43" text-anchor="middle" fill="#5F6B76" font-size="11">(no máster, doctorado, título propio ni centro adscrito)</text>
+
+        <rect x="20" y="82" width="400" height="44" rx="8" fill="#E8F0F8" stroke="#2E5C8A"/>
+        <text x="220" y="101" text-anchor="middle" font-weight="bold" fill="#1F3A5F">¿Tendrás 45 ECTS APROBADOS en febrero?</text>
+        <text x="220" y="117" text-anchor="middle" fill="#5F6B76" font-size="11">(en el momento de presentar la solicitud)</text>
+
+        <rect x="20" y="156" width="400" height="44" rx="8" fill="#E8F0F8" stroke="#2E5C8A"/>
+        <text x="220" y="175" text-anchor="middle" font-weight="bold" fill="#1F3A5F">¿Estás matriculado de al menos 30 ECTS?</text>
+        <text x="220" y="191" text-anchor="middle" fill="#5F6B76" font-size="11">(al solicitar y hasta terminar la movilidad)</text>
+
+        <rect x="20" y="230" width="400" height="44" rx="8" fill="#E8F0F8" stroke="#2E5C8A"/>
+        <text x="220" y="249" text-anchor="middle" font-weight="bold" fill="#1F3A5F">¿Hay convenio para TU grado en algún destino?</text>
+        <text x="220" y="265" text-anchor="middle" fill="#5F6B76" font-size="11">(mira la página 4 · doble grado: plazas del propio doble grado)</text>
+
+        <rect x="120" y="292" width="200" height="34" rx="17" fill="#2E7D4F"/>
+        <text x="220" y="314" text-anchor="middle" font-weight="bold" fill="#fff" font-size="13.5">✓ ¡Puedes pedirlo!</text>
+      </g>
+      <!-- flechas SÍ -->
+      <g stroke="#2E5C8A" stroke-width="2" marker-end="url(#ar)">
+        <line x1="220" y1="52" x2="220" y2="80"/><line x1="220" y1="126" x2="220" y2="154"/>
+        <line x1="220" y1="200" x2="220" y2="228"/><line x1="220" y1="274" x2="220" y2="290"/>
+      </g>
+      <g fill="#2E7D4F" font-weight="bold" font-size="11">
+        <text x="228" y="70">SÍ</text><text x="228" y="144">SÍ</text><text x="228" y="218">SÍ</text><text x="228" y="286">SÍ</text>
+      </g>
+      <!-- flechas NO -->
+      <g stroke="#B5121B" stroke-width="2" marker-end="url(#arr)">
+        <line x1="420" y1="30" x2="458" y2="30"/><line x1="420" y1="104" x2="458" y2="104"/>
+        <line x1="420" y1="178" x2="458" y2="178"/><line x1="420" y1="252" x2="458" y2="252"/>
+      </g>
+      <g fill="#B5121B" font-weight="bold" font-size="11">
+        <text x="428" y="24">NO</text><text x="428" y="98">NO</text><text x="428" y="172">NO</text><text x="428" y="246">NO</text>
+      </g>
+      <g font-size="11">
+        <rect x="460" y="10" width="210" height="40" rx="6" fill="#FBEAEA" stroke="#EDC2C4"/>
+        <text x="470" y="27" fill="#7a1a1f">SICUE es solo para estudiantes</text><text x="470" y="42" fill="#7a1a1f">de grado oficial.</text>
+        <rect x="460" y="84" width="210" height="40" rx="6" fill="#FDF3E1" stroke="#F1D9A8"/>
+        <text x="470" y="101" fill="#7a4e0f">Todavía no: pídelo la siguiente</text><text x="470" y="116" fill="#7a4e0f">convocatoria (normalmente desde 2.º).</text>
+        <rect x="460" y="158" width="210" height="40" rx="6" fill="#FDF3E1" stroke="#F1D9A8"/>
+        <text x="470" y="175" fill="#7a4e0f">Requisito obligatorio de la</text><text x="470" y="190" fill="#7a4e0f">convocatoria.</text>
+        <rect x="460" y="232" width="210" height="40" rx="6" fill="#FDF3E1" stroke="#F1D9A8"/>
+        <text x="470" y="249" fill="#7a4e0f">Habla con tu coordinador: se</text><text x="470" y="264" fill="#7a4e0f">pueden proponer convenios nuevos.</text>
+      </g>
+    </g>
+  </svg>
+
+  <div class="grid2">
+    <div class="card azul">
+      <h3>¿Cuándo me iría?</h3>
+      <!-- FECHAS: actualizar cada curso -->
+      <table>
+        <tr><th>Si pido en…</th><th>Me voy…</th></tr>
+        <tr><td>Febrero 2027</td><td><b>Sept. 2027</b> (curso completo o 1.er semestre)<br><b>Feb. 2028</b> (2.º semestre)</td></tr>
+      </table>
+      <p class="small" style="margin-top:2mm">Siempre es <b>el curso siguiente</b> al de la solicitud. Para el curso actual el plazo ya está cerrado. La mayoría de nuestras plazas son de <b>curso completo (9 meses)</b>.</p>
+    </div>
+    <div class="card">
+      <h3>Otras reglas</h3>
+      <ul class="small">
+        <li>Hasta <b>5 destinos</b> por orden de preferencia; la solicitud <b>no se puede cambiar</b> una vez enviada.</li>
+        <li>Un solo SICUE por curso y nunca dos veces en la misma universidad.</li>
+        <li><b>Doble grado</b>: pides plazas de tu doble grado; si no hay, de uno de los grados simples (si destino lo acepta). Un alumno de grado simple <b>no</b> puede usar plazas de doble grado.</li>
+        <li>Discapacidad ≥ 33 %: hay plazas reservadas y mínimos de ECTS reducidos.</li>
+      </ul>
+    </div>
+  </div>
+
+</section>
+
+<!-- ===================================================== PÁGINA 3 · LÍNEA TEMPORAL ===================================================== -->
+<section class="page">
+  <h2><span class="num">3</span>El año SICUE, mes a mes</h2>
+  <p class="lead">Ejemplo con un <b>curso completo</b>. Las fechas exactas se publican cada año en la web; aquí van las de 2026/27 como referencia.</p>
+
+  <!-- FECHAS: actualizar cada curso -->
+  <svg viewBox="0 0 680 520" style="width:100%">
+    <defs><marker id="tl" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" refX="8" refY="8" orient="auto"><path d="M0,0 L16,8 L0,16 Z" fill="#1F3A5F"/></marker></defs>
+    <line x1="60" y1="20" x2="60" y2="505" stroke="#1F3A5F" stroke-width="4" marker-end="url(#tl)"/>
+    <g font-size="12">
+      <!-- hitos: y, mes, título, detalle1, detalle2, color -->
+      <g>
+        <circle cx="60" cy="38" r="11" fill="#B5121B"/><text x="60" y="42" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">1</text>
+        <text x="80" y="34" font-weight="bold" fill="#B5121B">ENERO–FEBRERO</text>
+        <rect x="200" y="20" width="470" height="40" rx="6" fill="#FBEAEA"/>
+        <text x="210" y="36" font-weight="bold" fill="#1F3A5F">Convocatoria y solicitud online (~2 semanas)</text>
+        <text x="210" y="52" fill="#5F6B76" font-size="11">Eliges hasta 5 destinos. En 2026: del 4 al 20 de febrero.</text>
+      </g>
+      <g>
+        <circle cx="60" cy="98" r="11" fill="#2E5C8A"/><text x="60" y="102" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">2</text>
+        <text x="80" y="94" font-weight="bold" fill="#2E5C8A">MARZO–ABRIL</text>
+        <rect x="200" y="80" width="470" height="40" rx="6" fill="#E8F0F8"/>
+        <text x="210" y="96" font-weight="bold" fill="#1F3A5F">Listas de admitidos y adjudicación de plazas</text>
+        <text x="210" y="112" fill="#5F6B76" font-size="11">Provisional (7 días para alegar, 10 para renunciar) → definitiva. La plaza es definitiva.</text>
+      </g>
+      <g>
+        <circle cx="60" cy="158" r="11" fill="#2E7D4F"/><text x="60" y="162" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">3</text>
+        <text x="80" y="154" font-weight="bold" fill="#2E7D4F">ABRIL–JULIO</text>
+        <rect x="200" y="140" width="470" height="56" rx="6" fill="#E6F4EC"/>
+        <text x="210" y="156" font-weight="bold" fill="#1F3A5F">Admisión en destino + Acuerdo Académico (página 5)</text>
+        <text x="210" y="172" fill="#5F6B76" font-size="11">Pides admisión en la universidad de destino (¡sus plazos!) y preparas el acuerdo conmigo.</text>
+        <text x="210" y="188" fill="#B5121B" font-size="11" font-weight="bold">Acuerdo firmado por las 3 partes en la sede antes del 15 de julio.</text>
+      </g>
+      <g>
+        <circle cx="60" cy="230" r="11" fill="#2E5C8A"/><text x="60" y="234" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">4</text>
+        <text x="80" y="226" font-weight="bold" fill="#2E5C8A">JULIO–SEPT.</text>
+        <rect x="200" y="212" width="470" height="40" rx="6" fill="#E8F0F8"/>
+        <text x="210" y="228" font-weight="bold" fill="#1F3A5F">Matrícula en la URJC (y solo en la URJC)</text>
+        <text x="210" y="244" fill="#5F6B76" font-size="11">Matricula las asignaturas URJC que van en tu acuerdo. Lo no matriculado no se reconoce.</text>
+      </g>
+      <g>
+        <circle cx="60" cy="290" r="11" fill="#2E7D4F"/><text x="60" y="294" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">5</text>
+        <text x="80" y="286" font-weight="bold" fill="#2E7D4F">SEPTIEMBRE</text>
+        <rect x="200" y="272" width="470" height="40" rx="6" fill="#E6F4EC"/>
+        <text x="210" y="288" font-weight="bold" fill="#1F3A5F">¡Llegada! Certificado de llegada → a la sede</text>
+        <text x="210" y="304" fill="#5F6B76" font-size="11">Firmado (o firmado y sellado) por la universidad de destino.</text>
+      </g>
+      <g>
+        <circle cx="60" cy="350" r="11" fill="#B7791F"/><text x="60" y="354" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">6</text>
+        <text x="80" y="346" font-weight="bold" fill="#B7791F">1.er MES</text>
+        <rect x="200" y="332" width="470" height="40" rx="6" fill="#FDF3E1"/>
+        <text x="210" y="348" font-weight="bold" fill="#1F3A5F">Única ventana para CAMBIAR el acuerdo</text>
+        <text x="210" y="364" fill="#5F6B76" font-size="11">Firmado por las 3 partes, como indique RRII. Si cambian asignaturas URJC: modificar matrícula.</text>
+      </g>
+      <g>
+        <circle cx="60" cy="410" r="11" fill="#B5121B"/><text x="60" y="414" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">7</text>
+        <text x="80" y="406" font-weight="bold" fill="#B5121B">NOVIEMBRE</text>
+        <rect x="200" y="392" width="470" height="40" rx="6" fill="#FBEAEA"/>
+        <text x="210" y="408" font-weight="bold" fill="#1F3A5F">«Selección de asignaturas» (23–30 nov. en 2026)</text>
+        <text x="210" y="424" fill="#B5121B" font-size="11" font-weight="bold">Marca las asignaturas URJC a reconocer. Si no lo haces, NO se reconocen.</text>
+      </g>
+      <g>
+        <circle cx="60" cy="470" r="11" fill="#1F3A5F"/><text x="60" y="474" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">8</text>
+        <text x="80" y="466" font-weight="bold" fill="#1F3A5F">JUNIO–JULIO</text>
+        <rect x="200" y="452" width="470" height="40" rx="6" fill="#E8F0F8"/>
+        <text x="210" y="468" font-weight="bold" fill="#1F3A5F">Fin: certificado de fin de estancia + notas</text>
+        <text x="210" y="484" fill="#5F6B76" font-size="11">Las notas llegan a la URJC y tu coordinador califica tus asignaturas URJC.</text>
+      </g>
+    </g>
+  </svg>
+  <p class="small"><b>Si vas en el 2.º semestre:</b> el acuerdo se entrega antes de finales de octubre (28/10 en 2026) y la selección de asignaturas es en marzo (17–24/03 en 2027).</p>
+</section>
+
+<!-- ===================================================== PÁGINA 4 · DESTINOS ===================================================== -->
+<section class="page">
+  <h2><span class="num">4</span>¿A dónde me puedo ir?</h2>
+  <p class="lead">Destinos con convenio para nuestros grados en la oferta 2026/27 (<b>plazas · meses</b>). La oferta cambia cada año: consulta siempre el listado oficial de convenios (QR en la página 8).</p>
+  <p class="small"><span class="chip tfg">verde</span> permite incluir el TFG &nbsp; <span class="chip conf">gris</span> convenio pendiente de renovación: confírmalo antes de pedirlo</p>
+
+  <!-- CONVENIOS: copiar de 04-convenios-etsii.md cada curso -->
+  <div class="degree">
+    <h3>Ingeniería Informática</h3>
+    <div class="chips">
+      <span class="chip"><b>Almería</b> 3·9m</span><span class="chip"><b>Burgos</b> 2·9m</span>
+      <span class="chip"><b>Castilla-La Mancha</b> Albacete 1·9m</span><span class="chip"><b>Castilla-La Mancha</b> Talavera 2·9m</span><span class="chip"><b>Castilla-La Mancha</b> Ciudad Real 2·9m</span>
+      <span class="chip"><b>Córdoba</b> 2·9m</span><span class="chip"><b>Granada</b> Ceuta 2·9m</span><span class="chip"><b>Huelva</b> 3·9m</span>
+      <span class="chip"><b>Las Palmas G.C.</b> 2·9m</span><span class="chip"><b>León</b> 3·9m</span><span class="chip"><b>Málaga</b> 1·9m</span>
+      <span class="chip"><b>Murcia</b> 6·9m</span><span class="chip"><b>Oviedo</b> 1·9m</span><span class="chip"><b>Salamanca</b> 2·9m</span>
+      <span class="chip"><b>Sevilla</b> 1·9m</span><span class="chip tfg"><b>Zaragoza</b> Teruel 2·9m · TFG</span><span class="chip tfg"><b>Lleida</b> 2·9m · TFG</span>
+      <span class="chip"><b>Illes Balears</b> 1·9m</span><span class="chip"><b>València</b> 1·9m</span><span class="chip"><b>València</b> 1·5m</span>
+      <span class="chip"><b>Politècnica de València</b> 2·9m</span><span class="chip"><b>Rovira i Virgili</b> 1·9m</span>
+      <span class="chip conf"><b>Barcelona</b> 2·9m</span><span class="chip conf"><b>Jaume I</b> 3·9m</span>
+    </div>
+  </div>
+  <div class="degree">
+    <h3>Ingeniería del Software</h3>
+    <div class="chips">
+      <span class="chip"><b>Jaén</b> 1·9m</span><span class="chip"><b>Las Palmas G.C.</b> 1·9m</span><span class="chip"><b>Málaga</b> 1·9m</span>
+      <span class="chip"><b>Oviedo</b> 1·9m</span><span class="chip"><b>Sevilla</b> 1·9m</span><span class="chip"><b>Miguel Hernández</b> Elche 2·9m</span>
+      <span class="chip"><b>A Coruña</b> 1·9m</span><span class="chip"><b>Illes Balears</b> 1·9m</span>
+      <span class="chip conf"><b>Extremadura</b> 1·9m</span><span class="chip conf"><b>Barcelona</b> 2·9m</span>
+    </div>
+  </div>
+  <div class="degree">
+    <h3>Ingeniería de Computadores</h3>
+    <div class="chips">
+      <span class="chip"><b>Las Palmas G.C.</b> 1·9m</span><span class="chip"><b>Málaga</b> 1·9m</span><span class="chip"><b>Oviedo</b> 1·9m</span>
+      <span class="chip"><b>Sevilla</b> 1·9m</span><span class="chip"><b>A Coruña</b> 1·9m</span><span class="chip"><b>Illes Balears</b> 1·9m</span>
+      <span class="chip conf"><b>Extremadura</b> 1·9m</span>
+    </div>
+  </div>
+  <div class="grid2">
+    <div class="degree">
+      <h3>Inteligencia Artificial</h3>
+      <div class="chips">
+        <span class="chip"><b>León</b> 2·9m</span><span class="chip"><b>Miguel Hernández</b> Elche 2·9m</span>
+        <span class="chip"><b>A Coruña</b> 2·9m</span><span class="chip"><b>Vigo</b> Ourense 2·9m</span>
+        <span class="chip"><b>Politècnica de Catalunya</b> 2·9m</span>
+      </div>
+    </div>
+    <div>
+      <div class="degree">
+        <h3>Diseño y Desarrollo de Videojuegos</h3>
+        <div class="chips"><span class="chip conf"><b>Jaume I</b> Castellón 2·9m</span></div>
+      </div>
+      <div class="degree">
+        <h3>Matemáticas</h3>
+        <div class="chips"><span class="chip"><b>Politècnica de València</b> 2·9m</span></div>
+        <p class="tiny" style="margin-top:1mm">Dobles grados con Matemáticas: Granada (Inf.+Mat.) y Sevilla (Inf.+Mat., Soft.+Mat.).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid2" style="margin-top:2mm">
+    <div class="card azul">
+      <h3>¿Cómo se reparten las plazas?</h3>
+      <svg viewBox="0 0 300 92" style="width:100%">
+        <g font-size="11">
+          <rect x="4" y="6" width="84" height="76" rx="6" fill="#fff" stroke="#2E5C8A"/>
+          <text x="46" y="26" text-anchor="middle" font-weight="bold" fill="#1F3A5F">Tu grado</text>
+          <text x="46" y="44" text-anchor="middle" fill="#5F6B76" font-size="10">ordenado por</text>
+          <text x="46" y="58" text-anchor="middle" fill="#5F6B76" font-size="10">nota media</text>
+          <text x="46" y="72" text-anchor="middle" fill="#5F6B76" font-size="10">(y créditos)</text>
+          <path d="M92 44 H118" stroke="#1F3A5F" stroke-width="2"/><path d="M116 39 L124 44 L116 49 Z" fill="#1F3A5F"/>
+          <rect x="128" y="6" width="168" height="76" rx="6" fill="#fff" stroke="#2E5C8A"/>
+          <text x="138" y="24" fill="#1F3A5F" font-weight="bold">Tus 5 destinos, en orden:</text>
+          <text x="138" y="41" fill="#B5121B">1.º ocupado ✗</text>
+          <text x="138" y="56" fill="#2E7D4F" font-weight="bold">2.º libre → ¡adjudicado! ✓</text>
+          <text x="138" y="71" fill="#5F6B76">3.º, 4.º, 5.º …</text>
+        </g>
+      </svg>
+    </div>
+    <div class="card ambar">
+      <h3>Consejos para elegir</h3>
+      <ul class="small">
+        <li>Mira el <b>plan de estudios</b> del destino: necesitas encontrar asignaturas equivalentes que sumen 45 ECTS (o 24).</li>
+        <li>En comunidades con <b>lengua propia</b>, comprueba el idioma de las clases.</li>
+        <li>Pon 5 destinos que realmente aceptarías: <b>la plaza es definitiva</b>.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================== PÁGINA 5 · ACUERDO ACADÉMICO ===================================================== -->
+<section class="page">
+  <h2><span class="num">5</span>El Acuerdo Académico</h2>
+  <p class="lead">Es el «contrato» que dice qué asignaturas cursarás allí y por cuáles de la URJC se te reconocen. <b>Solo se reconoce lo que esté en él.</b></p>
+
+  <svg viewBox="0 0 680 250" style="width:100%; margin: 1mm 0 3mm">
+    <defs><marker id="fa" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" refX="10" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 Z" fill="#1F3A5F"/></marker></defs>
+    <g font-size="11.5">
+      <!-- fila 1 -->
+      <rect x="6" y="10" width="200" height="88" rx="8" fill="#E8F0F8" stroke="#2E5C8A"/>
+      <text x="106" y="32" text-anchor="middle" font-weight="bold" fill="#1F3A5F">① Propuesta en Excel</text>
+      <text x="106" y="52" text-anchor="middle" fill="#5F6B76" font-size="10.5">Te la paso yo. Una fila por</text>
+      <text x="106" y="67" text-anchor="middle" fill="#5F6B76" font-size="10.5">asignatura URJC ↔ destino,</text>
+      <text x="106" y="82" text-anchor="middle" fill="#5F6B76" font-size="10.5">con enlaces a las guías docentes</text>
+
+      <line x1="208" y1="54" x2="237" y2="54" stroke="#1F3A5F" stroke-width="2" marker-end="url(#fa)"/>
+
+      <rect x="240" y="10" width="200" height="88" rx="8" fill="#E6F4EC" stroke="#2E7D4F"/>
+      <text x="340" y="32" text-anchor="middle" font-weight="bold" fill="#1F3A5F">② La revisamos juntos</text>
+      <text x="340" y="52" text-anchor="middle" fill="#5F6B76" font-size="10.5">Te la devuelvo marcada:</text>
+      <text x="340" y="70" text-anchor="middle" font-size="10.5"><tspan fill="#2E7D4F" font-weight="bold">OK</tspan> · <tspan fill="#B7791F" font-weight="bold">Revisar</tspan> · <tspan fill="#B5121B" font-weight="bold">No</tspan></text>
+      <text x="340" y="88" text-anchor="middle" fill="#5F6B76" font-size="10.5">hasta que todo esté en OK</text>
+      <path d="M300 101 C 300 124, 380 124, 380 102" fill="none" stroke="#2E7D4F" stroke-width="1.6" stroke-dasharray="4 3" marker-end="url(#fa)"/>
+      <text x="340" y="132" text-anchor="middle" fill="#2E7D4F" font-size="10">se repite si hace falta</text>
+
+      <line x1="442" y1="54" x2="470" y2="54" stroke="#1F3A5F" stroke-width="2" marker-end="url(#fa)"/>
+
+      <rect x="474" y="10" width="200" height="88" rx="8" fill="#E8F0F8" stroke="#2E5C8A"/>
+      <text x="574" y="32" text-anchor="middle" font-weight="bold" fill="#1F3A5F">③ Impreso C</text>
+      <text x="574" y="52" text-anchor="middle" fill="#5F6B76" font-size="10.5">Pasas las asignaturas al</text>
+      <text x="574" y="67" text-anchor="middle" fill="#5F6B76" font-size="10.5">modelo oficial, a ordenador,</text>
+      <text x="574" y="82" text-anchor="middle" fill="#5F6B76" font-size="10.5">en mayúsculas, sin tachaduras</text>
+
+      <path d="M574 100 V 150 H 106 V 169" fill="none" stroke="#1F3A5F" stroke-width="2" marker-end="url(#fa)"/>
+
+      <!-- fila 2: firmas -->
+      <rect x="6" y="172" width="320" height="72" rx="8" fill="#fff" stroke="#1F3A5F"/>
+      <text x="166" y="192" text-anchor="middle" font-weight="bold" fill="#1F3A5F">④ Tres firmas, en este orden</text>
+      <g transform="translate(22,202)">
+        <circle cx="14" cy="14" r="13" fill="#2E5C8A"/><text x="14" y="18" text-anchor="middle" fill="#fff" font-weight="bold">1</text>
+        <text x="32" y="18" fill="#1F3A5F">Tú</text>
+        <circle cx="96" cy="14" r="13" fill="#2E7D4F"/><text x="96" y="18" text-anchor="middle" fill="#fff" font-weight="bold">2</text>
+        <text x="114" y="18" fill="#1F3A5F">Coordinador</text>
+        <circle cx="210" cy="14" r="13" fill="#B5121B"/><text x="210" y="18" text-anchor="middle" fill="#fff" font-weight="bold">3</text>
+        <text x="228" y="18" fill="#1F3A5F">Destino</text>
+      </g>
+
+      <line x1="328" y1="208" x2="356" y2="208" stroke="#1F3A5F" stroke-width="2" marker-end="url(#fa)"/>
+
+      <rect x="360" y="172" width="314" height="72" rx="8" fill="#1F3A5F"/>
+      <text x="517" y="196" text-anchor="middle" font-weight="bold" fill="#fff">⑤ Lo subes a la sede electrónica</text>
+      <text x="517" y="214" text-anchor="middle" fill="#fff" font-size="10.5">expediente 2026/SICOUT-xxxx</text>
+      <text x="517" y="232" text-anchor="middle" fill="#FFD9DB" font-size="10.5" font-weight="bold">antes del 15 de julio (2.º semestre: finales de octubre)</text>
+    </g>
+  </svg>
+
+  <div class="grid2">
+    <div class="card verde">
+      <h3>✓ Reglas del acuerdo</h3>
+      <ul class="small">
+        <li>Mínimo <b>45 ECTS</b> (curso completo) o <b>24 ECTS</b> (semestre). Menos solo si te quedan menos créditos para acabar (y los matriculas todos) o con discapacidad ≥ 33 %.</li>
+        <li>Las asignaturas URJC deben estar <b>matriculadas</b> ese curso.</li>
+        <li>No hace falta que sea «una por una»: dos de destino pueden reconocerse por una de la URJC (o al revés) si contenidos y créditos cuadran.</li>
+        <li>Las asignaturas de destino deben impartirse en el semestre de tu estancia.</li>
+      </ul>
+    </div>
+    <div class="card rojo">
+      <h3>✗ No se puede incluir</h3>
+      <ul class="small">
+        <li><b>RAC</b> (Reconocimiento Académico de Créditos).</li>
+        <li><b>Idioma Moderno</b>.</li>
+        <li><b>TFG</b> ni <b>Prácticas Externas</b>, salvo que el convenio lo permita expresamente (p. ej. Zaragoza-Teruel y Lleida en Ing. Informática).</li>
+      </ul>
+      <h3>Qué llevar a la revisión con tu coordinador</h3>
+      <ul class="check small">
+        <li>La plantilla Excel rellena.</li>
+        <li>Enlaces a las guías docentes URJC y de destino.</li>
+        <li>Tu expediente / asignaturas pendientes.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================== PÁGINA 6 · DURANTE Y DESPUÉS ===================================================== -->
+<section class="page">
+  <h2><span class="num">6</span>Durante y después de la estancia</h2>
+  <p class="lead">Todo se tramita en tu expediente de la <b>sede electrónica</b> (<a href="https://sede.urjc.es">sede.urjc.es</a>), con tu usuario de la URJC. Cada documento se valida antes de poder subir el siguiente.</p>
+
+  <svg viewBox="0 0 680 190" style="width:100%; margin: 2mm 0 4mm">
+    <defs><marker id="sa" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" refX="10" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 Z" fill="#1F3A5F"/></marker></defs>
+    <g font-size="11.5">
+      <!-- carpeta -->
+      <rect x="4" y="4" width="672" height="120" rx="10" fill="#F6F8FB" stroke="#C9D1DA"/>
+      <text x="16" y="22" fill="#5F6B76" font-size="10.5" font-weight="bold">📁 Expediente 2026/SICOUT-xxxx (sede electrónica)</text>
+      <g>
+        <rect x="16" y="34" width="140" height="78" rx="8" fill="#fff" stroke="#2E5C8A"/>
+        <circle cx="34" cy="52" r="11" fill="#2E5C8A"/><text x="34" y="56" text-anchor="middle" fill="#fff" font-weight="bold">1</text>
+        <text x="50" y="56" font-weight="bold" fill="#1F3A5F">Acuerdo</text>
+        <text x="26" y="78" fill="#5F6B76" font-size="10">Firmado por las 3 partes</text>
+        <text x="26" y="104" fill="#B5121B" font-size="10" font-weight="bold">Obligatorio · antes</text>
+      </g>
+      <line x1="160" y1="73" x2="182" y2="73" stroke="#1F3A5F" stroke-width="2" marker-end="url(#sa)"/>
+      <g>
+        <rect x="186" y="34" width="140" height="78" rx="8" fill="#fff" stroke="#2E7D4F"/>
+        <circle cx="204" cy="52" r="11" fill="#2E7D4F"/><text x="204" y="56" text-anchor="middle" fill="#fff" font-weight="bold">2</text>
+        <text x="220" y="56" font-weight="bold" fill="#1F3A5F">Llegada</text>
+        <text x="196" y="78" fill="#5F6B76" font-size="10">Certificado firmado</text>
+        <text x="196" y="91" fill="#5F6B76" font-size="10">por destino</text>
+        <text x="196" y="104" fill="#B5121B" font-size="10" font-weight="bold">Obligatorio · al llegar</text>
+      </g>
+      <line x1="330" y1="73" x2="352" y2="73" stroke="#1F3A5F" stroke-width="2" marker-end="url(#sa)"/>
+      <g>
+        <rect x="356" y="34" width="140" height="78" rx="8" fill="#fff" stroke="#B7791F" stroke-dasharray="5 3"/>
+        <circle cx="374" cy="52" r="11" fill="#B7791F"/><text x="374" y="56" text-anchor="middle" fill="#fff" font-weight="bold">3</text>
+        <text x="390" y="56" font-weight="bold" fill="#1F3A5F">Cambios</text>
+        <text x="366" y="78" fill="#5F6B76" font-size="10">Solo si cambias algo,</text>
+        <text x="366" y="91" fill="#5F6B76" font-size="10">solo en el 1.er mes</text>
+        <text x="366" y="104" fill="#B7791F" font-size="10" font-weight="bold">Opcional</text>
+      </g>
+      <line x1="500" y1="73" x2="522" y2="73" stroke="#1F3A5F" stroke-width="2" marker-end="url(#sa)"/>
+      <g>
+        <rect x="526" y="34" width="140" height="78" rx="8" fill="#fff" stroke="#1F3A5F"/>
+        <circle cx="544" cy="52" r="11" fill="#1F3A5F"/><text x="544" y="56" text-anchor="middle" fill="#fff" font-weight="bold">4</text>
+        <text x="560" y="56" font-weight="bold" fill="#1F3A5F">Fin estancia</text>
+        <text x="536" y="78" fill="#5F6B76" font-size="10">Certificado firmado</text>
+        <text x="536" y="91" fill="#5F6B76" font-size="10">por destino</text>
+        <text x="536" y="104" fill="#B5121B" font-size="10" font-weight="bold">Obligatorio · al irte</text>
+      </g>
+      <!-- notas -->
+      <path d="M596 128 V 160 H 470" fill="none" stroke="#1F3A5F" stroke-width="2" marker-end="url(#sa)"/>
+      <rect x="150" y="136" width="316" height="48" rx="8" fill="#E6F4EC" stroke="#2E7D4F"/>
+      <text x="308" y="156" text-anchor="middle" font-weight="bold" fill="#1F3A5F">Notas → Relaciones Internacionales → Coordinador</text>
+      <text x="308" y="173" text-anchor="middle" fill="#5F6B76" font-size="10.5">que califica tus asignaturas URJC en tu expediente</text>
+    </g>
+  </svg>
+
+  <div class="grid2">
+    <div class="card ambar">
+      <h3>¿Quieres cambiar asignaturas?</h3>
+      <ul class="small">
+        <li>Solo durante el <b>primer mes</b> de la estancia (si eres anual, también al empezar el 2.º semestre).</li>
+        <li>Impreso C de cambio → firmado por ti, por mí y por destino → se presenta <b>como indique Relaciones Internacionales</b> (sede electrónica o correo), en PDF y solo con la parte necesaria.</li>
+        <li>Si cambian asignaturas <b>de la URJC</b>: pide además la <b>modificación de matrícula</b> en su plazo (en 2026: 14–28 sept. y 2–16 nov.).</li>
+        <li>Con <b>beca del MEC</b> no puedes reducir los créditos matriculados.</li>
+      </ul>
+    </div>
+    <div class="card rojo">
+      <h3>«Selección de asignaturas»: ¡no te la saltes!</h3>
+      <p class="small">En la plataforma de <b>Modificación de matrícula → Selección Asignaturas</b>, marca <b>solo</b> las asignaturas URJC que se te van a reconocer.</p>
+      <p class="small"><b>Plazos 2026/27:</b> 23–30 nov. 2026 (1.er semestre y anual) · 17–24 mar. 2027 (2.º semestre).</p>
+      <p class="small" style="color:var(--rojo)"><b>Si no lo haces en plazo, no se te reconoce nada de lo cursado.</b></p>
+    </div>
+  </div>
+  <div class="card azul" style="margin-top:4mm">
+    <h3>Exámenes y notas</h3>
+    <ul class="small">
+      <li>Tienes las convocatorias de examen <b>de la universidad de destino</b>. Si suspendes allí, <b>no puedes examinarte de esa asignatura en la URJC</b> ese curso.</li>
+      <li>Si destino te envía a ti el certificado de notas, reenvíalo a <a href="mailto:internacional.sicuesalientes@urjc.es">internacional.sicuesalientes@urjc.es</a> (asunto: «CERTIFICADO DE NOTAS CURSO 2026/27»).</li>
+      <li>Las matrículas de honor de destino pueden pasar a tu expediente.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================================================== PÁGINA 7 · ERRORES ===================================================== -->
+<section class="page">
+  <h2><span class="num">7</span>Errores que salen caros</h2>
+  <p class="lead">Cada año alguien pierde créditos (o la plaza) por uno de estos. Que no seas tú.</p>
+
+  <div class="grid2">
+    <div class="card rojo"><h3>✗ No hacer la «Selección de asignaturas»</h3><p class="small">Sin ese paso en noviembre (o marzo) <b>no se reconoce nada</b>, aunque lo hayas aprobado todo.</p></div>
+    <div class="card rojo"><h3>✗ Asignaturas fuera del acuerdo o sin matricular</h3><p class="small">Lo que no esté en el acuerdo (o sus cambios) <b>y</b> matriculado en la URJC no se puede calificar.</p></div>
+    <div class="card rojo"><h3>✗ Renunciar tarde</h3><p class="small">Hay <b>10 días</b> tras la adjudicación provisional. Renunciar después sin causa justificada puede dejarte <b>sin SICUE el curso siguiente</b>.</p></div>
+    <div class="card rojo"><h3>✗ Dejar pasar los plazos de destino</h3><p class="small">La admisión en la universidad de destino es <b>cosa tuya</b> y no aceptan solicitudes fuera de plazo.</p></div>
+    <div class="card ambar"><h3>! Cambiar el acuerdo pasado el primer mes</h3><p class="small">Después ya no se puede. Revisa bien horarios y asignaturas al llegar.</p></div>
+    <div class="card ambar"><h3>! Suspender en destino</h3><p class="small">Pierdes la opción de examinarte de esa asignatura en la URJC ese curso.</p></div>
+    <div class="card ambar"><h3>! Beca del MEC</h3><p class="small">No puedes bajar de los créditos que matriculaste al principio.</p></div>
+    <div class="card ambar"><h3>! No mirar el correo @alumnos.urjc.es</h3><p class="small">Todo llega ahí (y a veces al spam). Lo enviado se da por recibido.</p></div>
+  </div>
+
+  <h3 style="margin-top:6mm">Resumen de pasos del alumno saliente</h3>
+  <div class="grid2">
+    <ul class="check small">
+      <li>Solicitud en plazo (febrero), con 5 destinos que aceptaría.</li>
+      <li>Plaza adjudicada → contacto con mi coordinador.</li>
+      <li>Expediente SICOUT creado en la sede (antes del 15 de julio).</li>
+      <li>Solicitud de admisión en la universidad de destino.</li>
+      <li>Propuesta en Excel revisada (todo en OK).</li>
+      <li>Impreso C firmado por las 3 partes y subido a la sede.</li>
+    </ul>
+    <ul class="check small">
+      <li>Matrícula URJC con las asignaturas del acuerdo.</li>
+      <li>Certificado de llegada subido.</li>
+      <li>(Si hace falta) cambios del acuerdo en el 1.er mes + modificación de matrícula.</li>
+      <li>Selección de asignaturas hecha (nov. / mar.).</li>
+      <li>Certificado de fin de estancia subido.</li>
+      <li>Certificado de notas enviado a RRII (si me lo dan a mí).</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================================================== PÁGINA 8 · ENLACES ===================================================== -->
+<section class="page">
+  <h2><span class="num">8</span>Enlaces y contactos</h2>
+  <p class="lead">Escanea los códigos o pulsa los enlaces (en el PDF son clicables).</p>
+
+  <div class="qrgrid">
+    <div class="qr"><a href="https://www.urjc.es/programa-de-movilidad-de-estudiantes-sicue" style="border:0"><img src="qr/web.svg" alt=""></a><div class="t">Web SICUE URJC</div><div class="tiny">Convocatoria, plazos, impresos</div></div>
+    <div class="qr"><a href="https://www.urjc.es/images/Intranet/sicue/2026_2027/Convenios%20SICUE%2026_27.pdf" style="border:0"><img src="qr/convenios.svg" alt=""></a><div class="t">Listado de convenios</div><div class="tiny">Destinos y plazas 2026/27</div></div>
+    <div class="qr"><a href="https://www.urjc.es/images/Intranet/sicue/2026_2027/Impreso_C_Acuerdo_Academico%20salientes%20URJC%2026-27.pdf" style="border:0"><img src="qr/impreso-c.svg" alt=""></a><div class="t">Impreso C</div><div class="tiny">Acuerdo Académico</div></div>
+    <div class="qr"><a href="https://www.urjc.es/images/Intranet/sicue/2026_2027/MANUAL_DEL_ESTUDIANTE_SICUE%20_%20SALIENTE%202026-27.pdf" style="border:0"><img src="qr/manual.svg" alt=""></a><div class="t">Manual del saliente</div><div class="tiny">Paso a paso oficial</div></div>
+    <div class="qr"><a href="https://www.urjc.es/images/Intranet/sicue/2026_2027/Plazos%20SICUE%20SALIENTES%20%202026-27.pdf" style="border:0"><img src="qr/plazos.svg" alt=""></a><div class="t">Plazos salientes</div><div class="tiny">Fechas del curso</div></div>
+    <div class="qr"><a href="https://sede.urjc.es" style="border:0"><img src="qr/sede.svg" alt=""></a><div class="t">Sede electrónica</div><div class="tiny">Tu expediente SICOUT</div></div>
+    <div class="qr"><a href="https://gestion3.urjc.es/guiasdocentes/" style="border:0"><img src="qr/guias.svg" alt=""></a><div class="t">Guías docentes URJC</div><div class="tiny">Para preparar el acuerdo</div></div>
+    <div class="qr" style="background:var(--celeste)"><a href="https://oscarsotosanchez.github.io/guia-sicue/propuesta-acuerdo-academico-SICUE.xlsx" style="border:0"><img src="qr/plantilla.svg" alt=""></a><div class="t">Plantilla Excel</div><div class="tiny">Propuesta de acuerdo (rellénala y envíamela)</div></div>
+  </div>
+
+  <h3 style="margin-top:6mm">¿A quién pregunto?</h3>
+  <table>
+    <tr><th style="width:42%">Si tu duda es sobre…</th><th>Escribe a</th></tr>
+    <tr><td>Qué asignaturas cursar, equivalencias, el Acuerdo Académico y sus cambios</td><td><b>Tu coordinador SICUE</b> · Óscar Soto · <a href="mailto:oscar.soto@urjc.es">oscar.soto@urjc.es</a></td></tr>
+    <tr><td>Solicitud, plazas, renuncias, sede electrónica, certificados, notas</td><td><b>Relaciones Internacionales (salientes)</b> · <a href="mailto:internacional.sicuesalientes@urjc.es">internacional.sicuesalientes@urjc.es</a> · 91 488 83 08</td></tr>
+    <tr><td>Matrícula y modificación de matrícula</td><td>Plataforma de matrícula de la URJC (los plazos te llegan por correo)</td></tr>
+    <tr><td>Admisión, alojamiento y clases en destino</td><td>La oficina SICUE de la <b>universidad de destino</b></td></tr>
+  </table>
+
+  <div class="footer">
+    <div style="display:flex; gap:4mm; align-items:center">
+      <img src="qr/guia.svg" alt="" style="width:16mm; height:16mm; flex:none">
+      <div>
+    Guía elaborada por la coordinación SICUE de la ETSII (URJC) · Versión octubre 2026, con datos de la convocatoria 2026/27.<br>
+    Versión web y descargas: <a href="https://oscarsotosanchez.github.io/guia-sicue/">oscarsotosanchez.github.io/guia-sicue/</a><br>
+    Documento orientativo: la información oficial y vinculante es la publicada en <a href="https://www.urjc.es/programa-de-movilidad-de-estudiantes-sicue">www.urjc.es/programa-de-movilidad-de-estudiantes-sicue</a>. Fechas y destinos cambian cada curso.
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
