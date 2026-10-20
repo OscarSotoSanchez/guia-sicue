@@ -16,9 +16,14 @@ Guía rápida del programa de movilidad nacional **SICUE** para estudiantes de l
 | `propuesta-acuerdo-academico-SICUE.xlsx` | Plantilla que rellenan los alumnos salientes antes del Impreso C. |
 | `generar-qr.py` | Genera los QR de `qr/` (requiere `pip install --user segno`). |
 | `generar-pdf.sh` | Regenera los QR y el PDF con Google Chrome headless. |
+| `img/` | Logotipo de la URJC en SVG (color y negativo/blanco), convertido desde los ficheros del [Manual de Identidad Visual](https://www.urjc.es/images/facultades/Manual_de_Identidad_Corporativa). |
+| `fonts/` | Inter, tipografía corporativa de comunicación de la URJC (licencia OFL). |
 
 ## Actualizar cada curso
 1. En `index.html`, buscar los comentarios `FECHAS` y `CONVENIOS` y actualizar fechas, destinos y el pie con la versión.
 2. Cambiar las URLs `2026_2027` de los documentos oficiales en `index.html` y `generar-qr.py`.
 3. `./generar-pdf.sh`
 4. Commit y push: GitHub Pages publica en uno o dos minutos.
+
+## Identidad visual
+Sigue el [Manual de Identidad Visual de la URJC](https://www.urjc.es/images/facultades/Manual_de_Identidad_Corporativa): rojo Pantone 485 C (`#CB0017`), tipografía Inter y logotipo sin modificar (versión en color sobre fondo blanco y negativo/blanco sobre el rojo), respetando el tamaño mínimo (20 mm / 60 px) y el área de respeto.

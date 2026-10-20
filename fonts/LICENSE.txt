@@ -1,0 +1,7 @@
+Inter (Rasmus Andersson) se distribuye bajo la SIL Open Font License, Version 1.1:
+https://openfontlicense.org
+
+Es la tipografía de comunicación del Manual de Identidad Visual de la URJC.
+Ficheros descargados de Google Fonts (subconjunto latin) y convertidos a fuentes
+estáticas (400, 500, 600, 700 e itálica) con fontTools, porque Chrome falla al
+imprimir a PDF algunas fuentes variables.

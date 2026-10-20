@@ -22,5 +22,5 @@ QR = {
 out = pathlib.Path(__file__).resolve().parent / "qr"
 out.mkdir(exist_ok=True)
 for name, url in QR.items():
-    segno.make(url, error="m").save(out / f"{name}.svg", scale=4, border=1, dark="#1F3A5F")
+    segno.make(url, error="m").save(out / f"{name}.svg", scale=4, border=1, dark="#282828")
     print(f"qr/{name}.svg -> {url}")
